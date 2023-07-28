@@ -27,13 +27,13 @@ enum DroneState {
 }
 
 model Drone {
-  id                   String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  serialNumber         String       @map("serial_number") @db.VarChar(100)
-  model                DroneModel
-  batteryCapacity      Int          @map("battery_capacity")
-  weightLimit          Decimal      @map("weight_limit") // unit is in kg
-  state                DroneState   @default(IDLE)
-  medicationsDelivered Medication[]
+  id              String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  serialNumber    String       @unique @default(dbgenerated("gen_random_uuid()")) @map("serial_number") @db.VarChar(100)
+  model           DroneModel
+  batteryCapacity Int          @map("battery_capacity")
+  weightLimit     Decimal      @map("weight_limit") // unit is in kg
+  state           DroneState   @default(IDLE)
+  dispatchedLoad  Medication[]
 
   @@map("drones")
 }
@@ -41,9 +41,9 @@ model Drone {
 model Medication {
   id      String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name    String
-  weight  Decimal // unit is in kg
-  code    String
+  code    String  @unique
   image   String
+  weight  Decimal // unit is in kg
   droneId String? @map("drone_id") @db.Uuid
   drone   Drone?  @relation(fields: [droneId], references: [id])
 

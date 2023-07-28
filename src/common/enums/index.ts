@@ -4,3 +4,5 @@ export enum AppEnv {
   DEVELOPMENT = 'development',
   TEST = 'test',
 }
+
+export { DroneModel, DroneState } from '@prisma/client';

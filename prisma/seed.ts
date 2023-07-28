@@ -19,7 +19,7 @@ function mockDrones(numberOfDrones = 1): Drone[] {
       model: faker.helpers.enumValue(DroneModel),
       batteryCapacity: faker.number.int({ min: 0, max: 100 }),
       state: faker.helpers.enumValue(DroneState),
-      weightLimit: new P.Decimal(faker.number.int({ min: 0, max: 500 })),
+      weightLimit: new P.Decimal(faker.number.int({ min: 60, max: 100 })),
     }));
 }
 
@@ -31,7 +31,7 @@ function mockMedications(
     .map(() => ({
       id: faker.string.uuid(),
       name: faker.commerce.productName(),
-      weight: new P.Decimal(faker.number.float({ min: 0, max: 500 })),
+      weight: new P.Decimal(faker.number.float({ min: 0, max: 20 })),
       code: faker.helpers.fromRegExp(/[A-Z]{2}[_A-Z0-9]{8}/),
       image: faker.image.url(),
     }));

@@ -51,6 +51,12 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
+# Swagger preview
+
+![img.png](screenshots/img.png)
+
+
+
 ## Running Unit Tests
 
 ```bash
@@ -82,3 +88,6 @@ $ yarn migrate:deploy
 ```bash
 $ yarn prisma:seed
 ```
+
+
+

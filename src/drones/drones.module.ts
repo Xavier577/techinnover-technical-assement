@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
+import { DatabaseModule } from '@database/database.module';
+import { MedicationsModule } from '@medications/medications.module';
 import { DronesService } from './services/drones.service';
 import { DronesController } from './drones.controller';
-import { DronesRepository } from './repositories/drones.repository';
-import { MedicationsModule } from '@medications/medications.module';
+import { DronesRepositoryProvider } from '@drones/repositories/provider';
 
 @Module({
-  imports: [MedicationsModule],
+  imports: [DatabaseModule, MedicationsModule],
   controllers: [DronesController],
-  providers: [DronesService, DronesRepository],
+  providers: [DronesService, DronesRepositoryProvider],
 })
 export class DronesModule {}

@@ -5,6 +5,8 @@ import { AppModule } from './app.module';
 import Swagger from '@common/utils/swagger';
 import RequestLoggerMiddleware from '@common/middlewares/request-logger.middleware';
 import { Logger } from '@nestjs/common';
+import { DronesModule } from '@drones/drones.module';
+import { MedicationsModule } from '@medications/medications.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -13,9 +15,11 @@ async function bootstrap() {
 
   const PORT = configService.get<string>('PORT');
 
+  app.setGlobalPrefix('api');
+
   app.use(RequestLoggerMiddleware);
 
-  Swagger(app);
+  Swagger(app, [DronesModule, MedicationsModule]);
 
   await app.listen(PORT);
 
