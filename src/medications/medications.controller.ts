@@ -18,7 +18,6 @@ export class MedicationsController {
   })
   @ApiResponse({ status: 200, type: ProductCodeDto })
   public async generateProductCode(): Promise<ProductCodeDto> {
-    this.logger.log('Herr');
     const code = await this.medicationsService.generateProductCode(10);
 
     return { code };
