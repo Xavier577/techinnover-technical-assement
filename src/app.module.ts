@@ -7,6 +7,8 @@ import envValidator from '@common/validators/env.validator';
 import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ErrorInterceptor } from '@common/interceptors/error.interceptor';
 import { ResponseLoggerInterceptor } from '@common/interceptors/response-logger.interceptor';
+import { ScheduleModule } from '@nestjs/schedule';
+import { BackgroundJobService } from './background-job.service';
 
 @Module({
   imports: [
@@ -14,8 +16,10 @@ import { ResponseLoggerInterceptor } from '@common/interceptors/response-logger.
     DatabaseModule,
     DronesModule,
     MedicationsModule,
+    ScheduleModule.forRoot(),
   ],
   providers: [
+    BackgroundJobService,
     { provide: APP_INTERCEPTOR, useClass: ResponseLoggerInterceptor },
     { provide: APP_INTERCEPTOR, useClass: ErrorInterceptor },
     {

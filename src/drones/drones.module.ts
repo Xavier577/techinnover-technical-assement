@@ -9,5 +9,6 @@ import { DronesRepositoryProvider } from '@drones/repositories/provider';
   imports: [DatabaseModule, MedicationsModule],
   controllers: [DronesController],
   providers: [DronesService, DronesRepositoryProvider],
+  exports: [DronesService],
 })
 export class DronesModule {}
