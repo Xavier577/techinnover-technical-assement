@@ -24,8 +24,6 @@ import { DroneDto } from '@drones/dtos/drone.dto';
 @ApiTags('Drones')
 @Controller('drones')
 export class DronesController {
-  private readonly logger = new Logger(DronesController.name);
-
   constructor(
     private readonly dronesService: DronesService,
     private readonly medicationsService: MedicationsService,
